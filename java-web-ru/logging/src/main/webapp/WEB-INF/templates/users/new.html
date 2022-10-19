@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/application.html}">
+
+<head>
+  <title>Sign Up</title>
+</head>
+<section layout:fragment="content">
+  <!-- BEGIN -->
+  <form>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Имя</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Имя">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Фамилия</label>
+      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Фамилия">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">E-mail</label>
+      <input type="email" class="form-control" id="formGroupExampleInput3" placeholder="E-mail">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+  </form>
+
+  <!-- END -->
+</section>
