@@ -109,15 +109,19 @@ public class ArticlesServlet extends HttpServlet {
             if (NumberUtils.isNumber(ArrayUtils.get(pathParts, pathParts.length - 1))) {
                 id = Integer.parseInt(ArrayUtils.get(pathParts, pathParts.length - 1));
             }
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
             if (id == 0) {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
+
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
             while (resultSet.next()) {
                 article.put("title", resultSet.getString("title"));
                 article.put("body", resultSet.getString("body"));
+            }
+            if (article.get("title") == null) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
             }
         } catch (SQLException e) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
