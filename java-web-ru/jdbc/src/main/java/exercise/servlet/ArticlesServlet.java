@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletContext;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -109,9 +109,6 @@ public class ArticlesServlet extends HttpServlet {
             if (NumberUtils.isNumber(ArrayUtils.get(pathParts, pathParts.length - 1))) {
                 id = Integer.parseInt(ArrayUtils.get(pathParts, pathParts.length - 1));
             }
-            if (id == 0) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
-            }
 
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -129,7 +126,6 @@ public class ArticlesServlet extends HttpServlet {
         }
         request.setAttribute("title", article.get("title"));
         request.setAttribute("body", article.get("body"));
-
         // END
         TemplateEngineUtil.render("articles/show.html", request, response);
     }
