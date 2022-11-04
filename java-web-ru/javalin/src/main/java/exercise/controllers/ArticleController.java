@@ -91,13 +91,17 @@ public final class ArticleController {
                 .id.equalTo(categoryId)
                 .findOne();
 
-        Article article = new QArticle()
+        new QArticle()
                 .id.equalTo(id)
                 .asUpdate()
                 .set("title", title)
                 .set("body", body)
                 .set("category", category)
                 .update();
+
+        Article article = new QArticle()
+                .id.equalTo(id)
+                .findOne();
 
         ctx.attribute("article", article);
         ctx.sessionAttribute("flash", "Статья успешно обновлена");
