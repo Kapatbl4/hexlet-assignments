@@ -93,7 +93,7 @@ public final class ArticleController {
 
         Article article = new QArticle()
                 .id.equalTo(id)
-                .saUpdate()
+                .asUpdate()
                 .set("title", title)
                 .set("body", body)
                 .set("category", category)
