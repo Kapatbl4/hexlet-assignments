@@ -14,6 +14,9 @@ application {
   mainClass = 'exercise.App'
 }
 
+sourceSets.main.java.srcDirs = ['src/main/java', 'build/generated/sources/annotationProcessor/java/main']
+
+
 dependencies {
   implementation 'io.javalin:javalin:4.0.1'
   implementation 'org.slf4j:slf4j-simple:1.7.31'

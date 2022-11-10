@@ -71,6 +71,8 @@ public final class ArticleController {
                 .id.equalTo(id)
                 .findOne();
 
+        List<Category> categories = new QCategory().findList();
+        ctx.attribute("categories", categories);
         ctx.attribute("article", article);
         ctx.attribute("title", article.getTitle());
         ctx.attribute("body", article.getBody());
@@ -87,23 +89,16 @@ public final class ArticleController {
 
         long id = ctx.pathParamAsClass("id", Long.class).getOrDefault(null);
 
-        Category category = new QCategory()
-                .id.equalTo(categoryId)
-                .findOne();
 
         new QArticle()
                 .id.equalTo(id)
                 .asUpdate()
                 .set("title", title)
                 .set("body", body)
-                .set("category", category)
-                .update();
+                .set("category", categoryId)
+                        .update();
 
-        Article article = new QArticle()
-                .id.equalTo(id)
-                .findOne();
 
-        ctx.attribute("article", article);
         ctx.sessionAttribute("flash", "Статья успешно обновлена");
         ctx.redirect("/articles");
         // END
@@ -127,6 +122,8 @@ public final class ArticleController {
                 .id.equalTo(id)
                 .findOne();
         article.delete();
+        ctx.attribute("article", article);
+        ctx.redirect("/articles");
         // END
     };
 }
