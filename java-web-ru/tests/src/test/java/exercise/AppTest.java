@@ -112,7 +112,7 @@ class AppTest {
                 .field("lastName", lastName)
                 .field("email", email)
                 .field("password", password)
-                .asEmpty();
+                .asString();
 
         String body = response.getBody();
 
